@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/users/new").hasAuthority(Role.ADMIN.name())
                         .anyRequest().permitAll()
-                ).formLogin(form->form.loginPage("/login")
+                ).formLogin(form->form.loginPage("/login").failureUrl("/login-error")
                    .loginProcessingUrl("/auth").permitAll())
                 .logout(l ->l.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/").deleteCookies("JSESSIONID")
