@@ -20,6 +20,9 @@ public class UserController {
 
     @GetMapping
     public String userList(Model model){
+//        if(1==1){
+//            throw new RuntimeException("test of error handling"); //test of error handling
+//        }
         model.addAttribute("users",userService.getAll());
         return "userList";
     }
