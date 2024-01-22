@@ -10,7 +10,6 @@ create table users
     name      varchar(255),
     password  varchar(255),
     role      varchar(255),
-    bucket_id int8,
     primary key (id)
 );
 
@@ -28,10 +27,6 @@ create table buckets
 alter table if exists buckets
     add constraint buckets_fk_user
     foreign key (user_id) references users;
-
-alter table if exists users
-    add constraint users_fk_bucket
-    foreign key (bucket_id) references buckets;
 
 DROP SEQUENCE IF EXISTS category_seq;
 create sequence category_seq start 1 increment 1;
