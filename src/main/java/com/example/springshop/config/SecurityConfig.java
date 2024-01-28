@@ -31,7 +31,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity(securedEnabled = true,prePostEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
 
 //        private UserService userService;
@@ -44,8 +44,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authz) -> authz
+                                .requestMatchers("/ws").permitAll()
                         .requestMatchers("/users").hasAnyAuthority(Role.ADMIN.name(),Role.MANAGER.name())
-                        .requestMatchers("/users/new").hasAuthority(Role.ADMIN.name())
+//                        .requestMatchers("/users/new").hasAuthority(Role.ADMIN.name())
                         .anyRequest().permitAll()
                 ).formLogin(form->form.loginPage("/login").failureUrl("/login-error")
                    .loginProcessingUrl("/auth").permitAll())

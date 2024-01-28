@@ -7,16 +7,14 @@ import com.example.springshop.domain.Product;
 import com.example.springshop.domain.User;
 import com.example.springshop.dto.BucketDTO;
 import com.example.springshop.dto.BucketDetailDTO;
+import com.example.springshop.dto.ProductDTO;
 import com.example.springshop.service.BucketService;
 import com.example.springshop.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,6 +58,8 @@ public class BucketServiceImpl implements BucketService {
             bucketRepository.save(bucket);
     }
 
+
+
     @Override
     public BucketDTO getBucketByUser(String name) {
         User user = userService.findByName(name);
@@ -83,4 +83,6 @@ public class BucketServiceImpl implements BucketService {
         bucketDTO.aggregate();
         return bucketDTO;
     }
+
+
 }

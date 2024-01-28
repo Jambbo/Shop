@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface ProductService {
     List<ProductDTO> getAll();
-    void addToUserBucket(Long id, String username);
+    void addToUserBucket(Long productId, String username);
+    void addProduct(ProductDTO dto);
+    ProductDTO getById(Long id);
+
 }

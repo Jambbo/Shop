@@ -3,7 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo Shop</title>
+<style>
+    /* General body styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
+    /* Container styling for menu and content */
+    .container, .content {
+        width: 80%;
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    /* Navigation menu table styling */
+    #nav-menu {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+    }
+
+    #nav-menu td {
+        padding: 0;
+    }
+
+    #nav-menu a {
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    #nav-menu a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    /* Styles for content area */
+    .content h2 {
+        color: #333;
+        margin: 10px 0;
+    }
+
+    .content b {
+        color: #007bff;
+    }
+
+    /* Responsive design for smaller screens */
+    @media screen and (max-width: 600px) {
+        .container, .content {
+            width: 100%;
+        }
+    }
+
+    /* Additional styles for user greetings and logout/login links */
+    .user-info, .auth-link {
+        text-align: right;
+        color: white;
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    .user-info a, .auth-link a {
+        color: #4CAF50;
+    }
+
+</style>
 </head>
 <body>
     <div th:insert="~{fragments/menu :: #nav-menu}"></div>

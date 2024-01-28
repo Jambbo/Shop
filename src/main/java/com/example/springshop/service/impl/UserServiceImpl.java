@@ -5,7 +5,6 @@ import com.example.springshop.domain.Role;
 import com.example.springshop.domain.User;
 import com.example.springshop.dto.UserDTO;
 import com.example.springshop.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,11 +12,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -80,6 +79,16 @@ public class UserServiceImpl implements UserService {
         }
         if(isChanged){
             userRepository.save(savedUser);
+        }
+    }
+
+    @Override
+    public User findById(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(userOptional.isPresent()){
+            return userOptional.get();
+        }else{
+            throw new UsernameNotFoundException("User not found with id: "+userId);
         }
     }
 
